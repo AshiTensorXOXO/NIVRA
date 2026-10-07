@@ -36,6 +36,21 @@ def add_subject():
     subjects.append(new_subject)
     print("Subject added successfully!")
 
+def view_tasks():
+    print("\nTasks:")
+
+    if len(tasks) == 0:
+        print("No tasks added yet.")
+
+    else:
+        for task in tasks:
+            if task["completed"]:
+                status = "[✓]"
+            else:
+                status = "[ ]"
+
+            print(status, task["name"], "|", task["subject"])
+
 
 while True:
 
@@ -56,19 +71,7 @@ while True:
         add_subject()
 
     elif choice == "3":
-        print("\nTasks:")
-
-        if len(tasks) == 0:
-            print("No tasks added yet.")
-
-        else:
-            for task in tasks:
-                if task["completed"]:
-                    status = "[✓]"
-                else:
-                    status = "[ ]"
-
-                print(status, task["name"], "|", task["subject"])
+        view_tasks()
 
     elif choice == "4":
         new_task = input("\nEnter task name: ")

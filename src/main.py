@@ -3,12 +3,6 @@ print("            NIVRA")
 print("      Student Companion")
 print("==============================")
 
-print()
-print("1. View Subjects")
-print("2. View Tasks")
-print("3. Add Task")
-print("4. Exit")
-
 subjects = [
     "Python",
     "C Programming",
@@ -17,22 +11,37 @@ subjects = [
     "Machine Learning"
 ]
 
-choice = input("\nEnter your choice: ")
+while True:
 
-if choice == "1":
-    print("\nSubjects:")
-    
-    for subject in subjects:
-        print("-", subject)
+    print()
+    print("1. View Subjects")
+    print("2. Add Subject")
+    print("3. View Tasks")
+    print("4. Add Task")
+    print("5. Exit")
 
-elif choice == "2":
-    print("\nTasks")
+    choice = input("\nEnter your choice: ")
 
-elif choice == "3":
-    print("\nAdd Task")
+    if choice == "1":
+        print("\nSubjects:")
 
-elif choice == "4":
-    print("\nGoodbye!")
+        for subject in subjects:
+            print("-", subject)
 
-else:
-    print("\nInvalid choice.")
+    elif choice == "2":
+        new_subject = input("\nEnter subject name: ")
+        subjects.append(new_subject)
+        print("Subject added successfully!")
+
+    elif choice == "3":
+        print("\nTasks")
+
+    elif choice == "4":
+        print("\nAdd Task")
+
+    elif choice == "5":
+        print("\nGoodbye!")
+        break
+
+    else:
+        print("\nInvalid choice.")

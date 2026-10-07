@@ -14,11 +14,13 @@ subjects = [
 tasks = [
     {
         "name": "Complete Python assignment",
-        "subject": "Python"
+        "subject": "Python",
+        "completed": False
     },
     {
         "name": "Revise if-else",
-        "subject": "C Programming"
+        "subject": "C Programming",
+        "completed": False
     }
 ]
 
@@ -29,7 +31,8 @@ while True:
     print("2. Add Subject")
     print("3. View Tasks")
     print("4. Add Task")
-    print("5. Exit")
+    print("5. Complete Task")
+    print("6. Exit")
 
     choice = input("\nEnter your choice: ")
 
@@ -52,7 +55,12 @@ while True:
 
         else:
             for task in tasks:
-                print("-", task["name"], "|", task["subject"])
+                if task["completed"]:
+                    status = "[✓]"
+                else:
+                    status = "[ ]"
+
+                print(status, task["name"], "|", task["subject"])
 
     elif choice == "4":
         new_task = input("\nEnter task name: ")
@@ -60,7 +68,8 @@ while True:
 
         task = {
             "name": new_task,
-            "subject": new_subject
+            "subject": new_subject,
+            "completed": False
         }
 
         tasks.append(task)
@@ -68,8 +77,23 @@ while True:
         print("Task added successfully!")
 
     elif choice == "5":
-        print("\nGoodbye!")
-        break
+        print("\nTasks:")
+
+        if len(tasks) == 0:
+            print("No tasks available.")
+
+        else:
+            for i in range(len(tasks)):
+                print(i + 1, "-", tasks[i]["name"], "|", tasks[i]["subject"])
+
+            task_number = int(input("\nEnter task number to complete: "))
+
+            if task_number >= 1 and task_number <= len(tasks):
+                tasks[task_number - 1]["completed"] = True
+                print("Task completed!")
+
+            else:
+                print("Invalid task number.")
 
     else:
         print("\nInvalid choice.")

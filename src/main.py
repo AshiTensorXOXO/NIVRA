@@ -11,7 +11,16 @@ subjects = [
     "Machine Learning"
 ]
 
-tasks = []
+tasks = [
+    {
+        "name": "Complete Python assignment",
+        "subject": "Python"
+    },
+    {
+        "name": "Revise if-else",
+        "subject": "C Programming"
+    }
+]
 
 while True:
 
@@ -43,11 +52,19 @@ while True:
 
         else:
             for task in tasks:
-                print("-", task)
+                print("-", task["name"], "|", task["subject"])
 
     elif choice == "4":
         new_task = input("\nEnter task name: ")
-        tasks.append(new_task)
+        new_subject = input("Enter subject: ")
+
+        task = {
+            "name": new_task,
+            "subject": new_subject
+        }
+
+        tasks.append(task)
+
         print("Task added successfully!")
 
     elif choice == "5":

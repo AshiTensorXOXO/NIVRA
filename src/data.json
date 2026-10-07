@@ -1,0 +1,27 @@
+{
+    "subjects": [
+        "Python",
+        "C Programming",
+        "C++",
+        "Artificial Intelligence",
+        "Machine Learning",
+        "SQL"
+    ],
+    "tasks": [
+        {
+            "name": "Complete Python assignment",
+            "subject": "Python",
+            "completed": false
+        },
+        {
+            "name": "Revise if-else",
+            "subject": "C Programming",
+            "completed": true
+        },
+        {
+            "name": "study SQL",
+            "subject": "SQL",
+            "completed": false
+        }
+    ]
+}

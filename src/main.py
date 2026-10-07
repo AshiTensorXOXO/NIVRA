@@ -11,4 +11,17 @@ print("4. Exit")
 
 choice = input("\nEnter your choice: ")
 
-print("\nYou selected:", choice)
+if choice == "1":
+    print("\nSubjects")
+
+elif choice == "2":
+    print("\nTasks")
+
+elif choice == "3":
+    print("\nAdd Task")
+
+elif choice == "4":
+    print("\nGoodbye!")
+
+else:
+    print("\nInvalid choice.")

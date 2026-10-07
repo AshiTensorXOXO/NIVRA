@@ -68,6 +68,25 @@ def add_task():
 
     print("Task added successfully!")
 
+def complete_task():
+    print("\nTasks:")
+
+    if len(tasks) == 0:
+        print("No tasks available.")
+
+    else:
+        for i in range(len(tasks)):
+            print(i + 1, "-", tasks[i]["name"], "|", tasks[i]["subject"])
+
+        task_number = int(input("\nEnter task number to complete: "))
+
+        if task_number >= 1 and task_number <= len(tasks):
+            tasks[task_number - 1]["completed"] = True
+            print("Task completed!")
+
+        else:
+            print("Invalid task number.")
+
 
 def complete_task():
     print("\nTasks:")

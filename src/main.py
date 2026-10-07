@@ -11,6 +11,8 @@ subjects = [
     "Machine Learning"
 ]
 
+tasks = []
+
 while True:
 
     print()
@@ -34,10 +36,19 @@ while True:
         print("Subject added successfully!")
 
     elif choice == "3":
-        print("\nTasks")
+        print("\nTasks:")
+
+        if len(tasks) == 0:
+            print("No tasks added yet.")
+
+        else:
+            for task in tasks:
+                print("-", task)
 
     elif choice == "4":
-        print("\nAdd Task")
+        new_task = input("\nEnter task name: ")
+        tasks.append(new_task)
+        print("Task added successfully!")
 
     elif choice == "5":
         print("\nGoodbye!")

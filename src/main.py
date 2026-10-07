@@ -31,6 +31,10 @@ def view_subjects():
     for subject in subjects:
         print("-", subject)
 
+def add_subject():
+    new_subject = input("\nEnter subject name: ")
+    subjects.append(new_subject)
+    print("Subject added successfully!")
 
 
 while True:
@@ -49,9 +53,7 @@ while True:
         view_subjects()
 
     elif choice == "2":
-        new_subject = input("\nEnter subject name: ")
-        subjects.append(new_subject)
-        print("Subject added successfully!")
+        add_subject()
 
     elif choice == "3":
         print("\nTasks:")

@@ -24,6 +24,15 @@ tasks = [
     }
 ]
 
+
+def view_subjects():
+    print("\nSubjects:")
+
+    for subject in subjects:
+        print("-", subject)
+
+
+
 while True:
 
     print()
@@ -37,10 +46,7 @@ while True:
     choice = input("\nEnter your choice: ")
 
     if choice == "1":
-        print("\nSubjects:")
-
-        for subject in subjects:
-            print("-", subject)
+        view_subjects()
 
     elif choice == "2":
         new_subject = input("\nEnter subject name: ")

@@ -25,6 +25,12 @@ def view_subjects():
 
 
 def add_subject():
+    new_subject = input("\nEnter subject name: ").strip()
+
+    if new_subject == "":
+        print("Subject name cannot be empty.")
+        return
+
     subjects.append(new_subject)
 
     save_data(subjects, tasks)
@@ -54,12 +60,28 @@ def view_tasks():
 
 
 def add_task():
+    new_task = input("\nEnter task name: ").strip()
+    new_subject = input("Enter subject: ").strip()
+
+    if new_task == "":
+        print("Task name cannot be empty.")
+        return
+
+    if new_subject == "":
+        print("Subject cannot be empty.")
+        return
+
+    task = {
+        "name": new_task,
+        "subject": new_subject,
+        "completed": False
+    }
+
     tasks.append(task)
 
     save_data(subjects, tasks)
 
     print("Task added successfully!")
-
 
 def complete_task():
     tasks[task_number - 1]["completed"] = True

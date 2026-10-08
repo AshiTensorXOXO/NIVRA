@@ -89,14 +89,16 @@ def add_task():
 while True:
 
     print()
+    print("===============================")
     print("1. View Subjects")
     print("2. Add Subject")
     print("3. View Tasks")
     print("4. Add Task")
     print("5. Complete Task")
     print("6. Exit")
+    print("===============================")
 
-    choice = input("\nEnter your choice: ")
+    choice = input("\n >>> Enter your choice: ")
 
     if choice == "1":
         view_subjects()

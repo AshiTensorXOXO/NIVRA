@@ -6,7 +6,8 @@
         "Artificial Intelligence",
         "Machine Learning",
         "SQL",
-        "SQL"
+        "SQL",
+        "English"
     ],
     "tasks": [
         {
@@ -22,6 +23,11 @@
         {
             "name": "study SQL",
             "subject": "SQL",
+            "completed": false
+        },
+        {
+            "name": "Presentation",
+            "subject": "English",
             "completed": false
         }
     ]

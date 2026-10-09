@@ -1,5 +1,6 @@
 from data_manager import load_data, save_data
 from validation import is_valid_text
+from task_manager import view_tasks
 
 print("==============================")
 print("            NIVRA")
@@ -37,25 +38,6 @@ def add_subject():
     save_data(subjects, tasks)
 
     print("Subject added successfully!")
-
-
-
-
-def view_tasks():
-    print("\nTasks:")
-
-    if len(tasks) == 0:
-        print("No tasks added yet.")
-
-    else:
-        for task in tasks:
-            if task["completed"]:
-                status = "[✓]"
-            else:
-                status = "[ ]"
-
-            print(status, task["name"], "|", task["subject"])
-
 
 
 
@@ -107,7 +89,7 @@ while True:
         add_subject()
 
     elif choice == "3":
-        view_tasks()
+        view_tasks(tasks)
 
     elif choice == "4":
         add_task()

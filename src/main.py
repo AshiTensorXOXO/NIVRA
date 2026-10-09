@@ -1,5 +1,12 @@
 from data_manager import load_data, save_data
-from task_manager import add_task, view_tasks, complete_task
+from task_manager import (
+    add_task,
+    view_tasks,
+    complete_task,
+    edit_task,
+    delete_task,
+    search_tasks
+)
 from validation import is_valid_text
 
 
@@ -186,35 +193,47 @@ def period_menu(period):
         print("4. Remove subject")
         print("5. View tasks")
         print("6. Add task")
-        print("7. Complete task")
-        print("8. Back to main menu")
+        print("7. Edit task")
+        print("8. Complete task")
+        print("9. Delete task")
+        print("10. Search tasks")
+        print("11. Back to main menu")
 
         choice = input("Enter your choice: ").strip()
 
         if choice == "1":
             view_subjects(period)
-
+        
         elif choice == "2":
             add_subject(period)
-
+        
         elif choice == "3":
             rename_subject(period)
-
+        
         elif choice == "4":
             remove_subject(period)
-
+        
         elif choice == "5":
             view_tasks(period)
-
+        
         elif choice == "6":
             add_task(data, period)
-
+        
         elif choice == "7":
-            complete_task(data, period)
-
+            edit_task(data, period)
+        
         elif choice == "8":
+            complete_task(data, period)
+        
+        elif choice == "9":
+            delete_task(data, period)
+        
+        elif choice == "10":
+            search_tasks(period)
+        
+        elif choice == "11":
             break
-
+        
         else:
             print("Invalid choice. Try again.")
 

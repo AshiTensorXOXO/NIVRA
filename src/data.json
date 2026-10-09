@@ -1,34 +1,65 @@
 {
-    "subjects": [
-        "Python",
-        "C Programming",
-        "C++",
-        "Artificial Intelligence",
-        "Machine Learning",
-        "SQL",
-        "SQL",
-        "English"
-    ],
-    "tasks": [
+    "academic_system": "Quarters",
+    "periods": [
         {
-            "name": "Complete Python assignment",
-            "subject": "Python",
-            "completed": false
+            "name": "Unassigned",
+            "subjects": [
+                "Python",
+                "C Programming",
+                "C++",
+                "Artificial Intelligence",
+                "Machine Learning",
+                "SQL",
+                "SQL",
+                "English",
+                "Mathematics",
+                "Physics"
+            ],
+            "tasks": [
+                {
+                    "name": "Complete Python assignment",
+                    "subject": "Python",
+                    "completed": false
+                },
+                {
+                    "name": "Revise if-else",
+                    "subject": "C Programming",
+                    "completed": true
+                },
+                {
+                    "name": "study SQL",
+                    "subject": "SQL",
+                    "completed": false
+                },
+                {
+                    "name": "Presentation",
+                    "subject": "English",
+                    "completed": false
+                },
+                {
+                    "name": "Read",
+                    "subject": "Python",
+                    "completed": false
+                },
+                {
+                    "name": "Revise Python",
+                    "subject": "Python",
+                    "completed": false
+                }
+            ]
         },
         {
-            "name": "Revise if-else",
-            "subject": "C Programming",
-            "completed": true
-        },
-        {
-            "name": "study SQL",
-            "subject": "SQL",
-            "completed": false
-        },
-        {
-            "name": "Presentation",
-            "subject": "English",
-            "completed": false
+            "name": "Quarter 1",
+            "subjects": [
+                "Data Structures"
+            ],
+            "tasks": [
+                {
+                    "name": "Learn Arrays",
+                    "subject": "Data Structures",
+                    "completed": false
+                }
+            ]
         }
     ]
 }

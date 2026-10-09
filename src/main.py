@@ -1,74 +1,220 @@
 from data_manager import load_data, save_data
+from task_manager import add_task, view_tasks, complete_task
 from validation import is_valid_text
-from task_manager import view_tasks, add_task
-
-print("==============================")
-print("            NIVRA")
-print("      Student Companion")
-print("==============================")
-
 
 
 data = load_data()
 
-subjects = data["subjects"]
-tasks = data["tasks"]
+
+def choose_academic_system():
+    print("\nChoose your academic system:")
+    print("1. Terms")
+    print("2. Semesters")
+    print("3. Quarters")
+    print("4. Trimesters")
+    print("5. Custom")
+
+    choices = {
+        "1": "Terms",
+        "2": "Semesters",
+        "3": "Quarters",
+        "4": "Trimesters",
+        "5": "Custom"
+    }
+
+    choice = input("Enter your choice: ").strip()
+
+    if choice not in choices:
+        print("Invalid choice.")
+        return
+
+    data["academic_system"] = choices[choice]
+    save_data(data)
+    print("Academic system saved!")
 
 
+def add_period():
+    if data["academic_system"] is None:
+        print("\nChoose your academic system first.")
+        return
 
-def view_subjects():
-    print("\nSubjects:")
+    period_name = input(
+        f"\nEnter {data['academic_system'][:-1].lower()} name: "
+    ).strip()
 
-    for subject in subjects:
-        print("-", subject)
+    if not is_valid_text(period_name):
+        print("Period name cannot be empty.")
+        return
 
-def add_subject():
-    new_subject = input("\nEnter subject name: ").strip()
+    for period in data["periods"]:
+        if period["name"] == period_name:
+            print("That period already exists.")
+            return
 
-    if not is_valid_text(new_subject):
+    data["periods"].append({
+        "name": period_name,
+        "subjects": [],
+        "tasks": []
+    })
+
+    save_data(data)
+    print("Academic period added successfully!")
+
+
+def view_periods():
+    print("\nAcademic periods:")
+
+    if not data["periods"]:
+        print("No academic periods added yet.")
+        return
+
+    for index, period in enumerate(data["periods"], start=1):
+        print(f"{index}. {period['name']}")
+
+
+def select_period():
+    if not data["periods"]:
+        print("\nNo academic periods available.")
+        return None
+
+    view_periods()
+
+    choice = input("\nEnter the period number: ").strip()
+
+    if not choice.isdigit():
+        print("Please enter a valid number.")
+        return None
+
+    index = int(choice) - 1
+
+    if index < 0 or index >= len(data["periods"]):
+        print("Invalid period number.")
+        return None
+
+    return data["periods"][index]
+
+
+def add_subject(period):
+    subject = input("\nEnter subject name: ").strip()
+
+    if not is_valid_text(subject):
         print("Subject name cannot be empty.")
         return
 
-    subjects.append(new_subject)
+    if subject in period["subjects"]:
+        print("Subject already exists in this period.")
+        return
 
-    save_data(subjects, tasks)
-
+    period["subjects"].append(subject)
+    save_data(data)
     print("Subject added successfully!")
 
 
+def view_subjects(period):
+    print(f"\nSubjects in {period['name']}:")
 
-while True:
+    if not period["subjects"]:
+        print("No subjects added yet.")
+        return
 
-    print()
-    print("===============================")
-    print("1. View Subjects")
-    print("2. Add Subject")
-    print("3. View Tasks")
-    print("4. Add Task")
-    print("5. Complete Task")
-    print("6. Exit")
-    print("===============================")
+    for index, subject in enumerate(period["subjects"], start=1):
+        print(f"{index}. {subject}")
 
-    choice = input("\n >>> Enter your choice: ")
 
-    if choice == "1":
-        view_subjects()
+def remove_subject(period):
+    if not period["subjects"]:
+        print("\nNo subjects available to remove.")
+        return
 
-    elif choice == "2":
-        add_subject()
+    view_subjects(period)
 
-    elif choice == "3":
-        view_tasks(tasks)
+    subject = input("\nEnter the subject to remove: ").strip()
 
-    elif choice == "4":
-        add_task(subjects, tasks)
+    if subject not in period["subjects"]:
+        print("Subject does not exist.")
+        return
 
-    elif choice == "5":
-        complete_task()
+    for task in period["tasks"]:
+        if task["subject"] == subject:
+            print("Cannot remove a subject linked to existing tasks.")
+            return
 
-    elif choice == "6":
-        print("\nGoodbye!")
-        break
+    period["subjects"].remove(subject)
+    save_data(data)
+    print("Subject removed successfully!")
 
-    else:
-        print("\nInvalid choice.")
+
+def period_menu(period):
+    while True:
+        print(f"\n===== {period['name']} =====")
+        print("1. View subjects")
+        print("2. Add subject")
+        print("3. Remove subject")
+        print("4. View tasks")
+        print("5. Add task")
+        print("6. Complete task")
+        print("7. Back to main menu")
+
+        choice = input("Enter your choice: ").strip()
+
+        if choice == "1":
+            view_subjects(period)
+
+        elif choice == "2":
+            add_subject(period)
+
+        elif choice == "3":
+            remove_subject(period)
+
+        elif choice == "4":
+            view_tasks(period)
+
+        elif choice == "5":
+            add_task(data, period)
+
+        elif choice == "6":
+            complete_task(data, period)
+
+        elif choice == "7":
+            break
+
+        else:
+            print("Invalid choice. Try again.")
+
+
+def main():
+    while True:
+        print("\n========== NIVRA ==========")
+        print("1. Choose academic system")
+        print("2. Add academic period")
+        print("3. View academic periods")
+        print("4. Open an academic period")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ").strip()
+
+        if choice == "1":
+            choose_academic_system()
+
+        elif choice == "2":
+            add_period()
+
+        elif choice == "3":
+            view_periods()
+
+        elif choice == "4":
+            period = select_period()
+
+            if period is not None:
+                period_menu(period)
+
+        elif choice == "5":
+            print("\nNivra says goodbye. Keep building!")
+            break
+
+        else:
+            print("Invalid choice. Try again.")
+
+
+if __name__ == "__main__":
+    main()

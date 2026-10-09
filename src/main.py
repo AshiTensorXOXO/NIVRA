@@ -1,6 +1,6 @@
 from data_manager import load_data, save_data
 from validation import is_valid_text
-from task_manager import view_tasks
+from task_manager import view_tasks, add_task
 
 print("==============================")
 print("            NIVRA")
@@ -22,10 +22,6 @@ def view_subjects():
     for subject in subjects:
         print("-", subject)
 
-
-
-
-
 def add_subject():
     new_subject = input("\nEnter subject name: ").strip()
 
@@ -38,33 +34,6 @@ def add_subject():
     save_data(subjects, tasks)
 
     print("Subject added successfully!")
-
-
-
-
-def add_task():
-    new_task = input("\nEnter task name: ").strip()
-    new_subject = input("Enter subject: ").strip()
-
-    if not is_valid_text(new_task):
-        print("Task name cannot be empty.")
-        return
-
-    if not is_valid_text(new_subject):
-        print("Subject cannot be empty.")
-        return
-
-    task = {
-        "name": new_task,
-        "subject": new_subject,
-        "completed": False
-    }
-
-    tasks.append(task)
-
-    save_data(subjects, tasks)
-
-    print("Task added successfully!")
 
 
 
@@ -92,7 +61,7 @@ while True:
         view_tasks(tasks)
 
     elif choice == "4":
-        add_task()
+        add_task(subjects, tasks)
 
     elif choice == "5":
         complete_task()

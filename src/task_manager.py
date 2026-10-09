@@ -13,6 +13,10 @@ def add_task(subjects, tasks):
         print("Subject cannot be empty.")
         return
 
+    if new_subject not in subjects:
+        print("Subject does not exist. Please add it first.")
+        return
+
     task = {
         "name": new_task,
         "subject": new_subject,

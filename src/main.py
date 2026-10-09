@@ -109,6 +109,39 @@ def add_subject(period):
     save_data(data)
     print("Subject added successfully!")
 
+def rename_subject(period):
+    if not period["subjects"]:
+        print("\nNo subjects available to rename.")
+        return
+
+    view_subjects(period)
+
+    old_name = input("\nEnter the subject to rename: ").strip()
+
+    if old_name not in period["subjects"]:
+        print("Subject does not exist.")
+        return
+
+    new_name = input("Enter the new subject name: ").strip()
+
+    if not is_valid_text(new_name):
+        print("Subject name cannot be empty.")
+        return
+
+    if new_name in period["subjects"]:
+        print("A subject with that name already exists.")
+        return
+
+    index = period["subjects"].index(old_name)
+    period["subjects"][index] = new_name
+
+    for task in period["tasks"]:
+        if task["subject"] == old_name:
+            task["subject"] = new_name
+
+    save_data(data)
+    print("Subject renamed successfully!")
+
 
 def view_subjects(period):
     print(f"\nSubjects in {period['name']}:")
@@ -149,11 +182,12 @@ def period_menu(period):
         print(f"\n===== {period['name']} =====")
         print("1. View subjects")
         print("2. Add subject")
-        print("3. Remove subject")
-        print("4. View tasks")
-        print("5. Add task")
-        print("6. Complete task")
-        print("7. Back to main menu")
+        print("3. Rename subject")
+        print("4. Remove subject")
+        print("5. View tasks")
+        print("6. Add task")
+        print("7. Complete task")
+        print("8. Back to main menu")
 
         choice = input("Enter your choice: ").strip()
 
@@ -164,18 +198,21 @@ def period_menu(period):
             add_subject(period)
 
         elif choice == "3":
-            remove_subject(period)
+            rename_subject(period)
 
         elif choice == "4":
-            view_tasks(period)
+            remove_subject(period)
 
         elif choice == "5":
-            add_task(data, period)
+            view_tasks(period)
 
         elif choice == "6":
-            complete_task(data, period)
+            add_task(data, period)
 
         elif choice == "7":
+            complete_task(data, period)
+
+        elif choice == "8":
             break
 
         else:

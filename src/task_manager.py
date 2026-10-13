@@ -309,3 +309,71 @@ def search_tasks(period):
         )
 
     print(f"\nFound {len(matching_tasks)} matching task(s).")
+
+# -----------------------------------------
+# ACADEMIC DASHBOARD
+# -----------------------------------------
+
+def show_dashboard(period):
+    tasks = period["tasks"]
+
+    total_tasks = len(tasks)
+
+    completed_tasks = sum(
+        1 for task in tasks
+        if task["completed"]
+    )
+
+    pending_tasks = total_tasks - completed_tasks
+
+    today = datetime.today().date()
+    overdue_tasks = 0
+
+    for task in tasks:
+        if task["completed"]:
+            continue
+
+        due_date = task.get("due_date")
+
+        if not due_date:
+            continue
+
+        try:
+            deadline = datetime.strptime(
+                due_date, "%Y-%m-%d"
+            ).date()
+        except ValueError:
+            continue
+
+        if deadline < today:
+            overdue_tasks += 1
+
+    completion_rate = (
+        completed_tasks / total_tasks * 100
+        if total_tasks > 0
+        else 0
+    )
+
+    print("\n" + "=" * 40)
+    print("           NIVRA DASHBOARD")
+    print("=" * 40)
+
+    print(f"Academic period:   {period['name']}")
+    print(f"Total tasks:       {total_tasks}")
+    print(f"Completed tasks:   {completed_tasks}")
+    print(f"Pending tasks:     {pending_tasks}")
+    print(f"Overdue tasks:     {overdue_tasks}")
+    print(f"Completion rate:   {completion_rate:.1f}%")
+
+    print("=" * 40)
+
+    if total_tasks == 0:
+        print("Your academic journey starts with one task!")
+    elif completion_rate == 100:
+        print("All tasks completed. Outstanding work! 🎉")
+    elif overdue_tasks > 0:
+        print("Some deadlines need your attention.")
+    else:
+        print("Keep going! Every task counts. 💪")
+
+    print("=" * 40)

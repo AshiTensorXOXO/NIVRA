@@ -5,7 +5,8 @@ from task_manager import (
     complete_task,
     edit_task,
     delete_task,
-    search_tasks
+    search_tasks,
+    show_dashboard
 )
 from validation import is_valid_text
 
@@ -197,7 +198,8 @@ def period_menu(period):
         print("8. Complete task")
         print("9. Delete task")
         print("10. Search tasks")
-        print("11. Back to main menu")
+        print("11. View Academic Dashboard")
+        print("12. Back to main menu")
 
         choice = input("Enter your choice: ").strip()
 
@@ -232,8 +234,12 @@ def period_menu(period):
             search_tasks(period)
         
         elif choice == "11":
+            show_dashboard(period)
             break
-        
+
+        elif choice == "12":
+            break
+
         else:
             print("Invalid choice. Try again.")
 

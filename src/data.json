@@ -1,5 +1,5 @@
 {
-    "academic_system": "Quarters",
+    "academic_system": "Terms",
     "periods": [
         {
             "name": "Unassigned",
@@ -51,15 +51,27 @@
         {
             "name": "Quarter 1",
             "subjects": [
-                "Data Structures"
+                "Data Str",
+                "English"
             ],
             "tasks": [
                 {
-                    "name": "Learn Arrays",
-                    "subject": "Data Structures",
-                    "completed": false
+                    "name": "Finish Arrays",
+                    "subject": "Data Str",
+                    "completed": true
+                },
+                {
+                    "name": "Revise Chapter 7",
+                    "subject": "English",
+                    "completed": false,
+                    "due_date": null
                 }
             ]
+        },
+        {
+            "name": "Term 2",
+            "subjects": [],
+            "tasks": []
         }
     ]
 }

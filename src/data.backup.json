@@ -1,0 +1,46 @@
+{
+    "subjects": [
+        "Python",
+        "C Programming",
+        "C++",
+        "Artificial Intelligence",
+        "Machine Learning",
+        "SQL",
+        "SQL",
+        "English",
+        "Mathematics",
+        "Physics"
+    ],
+    "tasks": [
+        {
+            "name": "Complete Python assignment",
+            "subject": "Python",
+            "completed": false
+        },
+        {
+            "name": "Revise if-else",
+            "subject": "C Programming",
+            "completed": true
+        },
+        {
+            "name": "study SQL",
+            "subject": "SQL",
+            "completed": false
+        },
+        {
+            "name": "Presentation",
+            "subject": "English",
+            "completed": false
+        },
+        {
+            "name": "Read",
+            "subject": "Python",
+            "completed": false
+        },
+        {
+            "name": "Revise Python",
+            "subject": "Python",
+            "completed": false
+        }
+    ]
+}
